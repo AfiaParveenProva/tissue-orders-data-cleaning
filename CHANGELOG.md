@@ -14,17 +14,27 @@
 
 ## Day 2: Cleaning in SQL
 
-- Removed 620 duplicate rows by record_id (ROW_NUMBER, keep first): 8,400 rows down to 7,780
+* Removed 620 duplicate rows by record_id (ROW_NUMBER, keep first): 8,400 rows down to 7,780
+* Standardised 4 date formats to YYYY-MM-DD (YYYY-MM-DD 2,004; DD.MM.YYYY 1,990; DD/MM/YYYY 1,835; DD Mon YYYY 1,951)
+* Checked that slash and dot dates are day first: 2,352 have a first part above 12, none have a middle part above 12
+* Date check after conversion: 0 blank or invalid dates, range 2025-01-01 to 2025-12-31
+* Duplicates and blanks were in different rows (blank counts were the same before and after removing duplicates)
+* Missing value rules: unit_price (73) filled from the product's single fixed price; quantity (74) left blank and flagged needs_review = 1; customer_name (79) and region (84) set to 'Unknown'
+* Result: orders_clean table with 7,780 unique rows and 0 missing prices
 
-- Standardised 4 date formats to YYYY-MM-DD (YYYY-MM-DD 2,004; DD.MM.YYYY 1,990; DD/MM/YYYY 1,835; DD Mon YYYY 1,951)
+## Day 3: Validation in Excel
 
-- Checked that slash and dot dates are day first: 2,352 have a first part above 12, none have a middle part above 12
+- Exported the cleaned table (orders_clean) to CSV: 7,780 rows, 10 columns including the needs_review flag
 
-- Date check after conversion: 0 blank or invalid dates, range 2025-01-01 to 2025-12-31
+- Took a random sample of 200 of the 8,400 raw orders (seed 42) and put each raw row next to its cleaned version in validation_sample.xlsx
 
-- Duplicates and blanks were in different rows (blank counts were the same before and after removing duplicates)
+- Excel formulas checked every field against the cleaning rules: 200 of 200 rows OK, 0 flagged
 
-- Missing value rules: unit_price (73) filled from the product's single fixed price; quantity (74) left blank and flagged needs_review = 1; customer_name (79) and region (84) set to 'Unknown'
+- Date check: 200 of 200 dates converted correctly to YYYY-MM-DD, 0 flagged
 
-- Result: orders_clean table with 7,780 unique rows and 0 missing prices
+- Match rate: 100% (200 of 200) on the random sample, which included orders that were duplicated in the raw file
+
+- Built a pivot table of orders by region and month (orders_clean_pivot.xlsx): grand total 7,780 orders, with the 84 'Unknown' regions shown as their own row
+
+- Screenshot saved in images/pivot_region_month.png
 

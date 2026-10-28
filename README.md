@@ -23,9 +23,9 @@ Starting error rate: **11.1%** ((620 duplicates + 310 rows with blanks) / 8,400 
 
 1. **Profile (Python):** found the row count, the duplicates, the missing values and the date formats. See `notebooks/01_profiling.ipynb`.
 2. **Clean (SQL):** three scripts in `sql/`:
-&#x20;  - `01_remove_duplicates.sql` keeps the first row for each `record_id` (8,400 down to 7,780 rows)
-&#x20;  - `02_standardise_dates.sql` converts all 4 formats to `YYYY-MM-DD`. I checked that slash and dot dates are day first: 2,352 have a first part above 12 and none have a middle part above 12.
-&#x20;  - `03_handle_missing_values.sql` applies the missing-value rules below
+   - `01_remove_duplicates.sql` keeps the first row for each `record_id` (8,400 down to 7,780 rows)
+   - `02_standardise_dates.sql` converts all 4 formats to `YYYY-MM-DD`. I checked that slash and dot dates are day first: 2,352 have a first part above 12 and none have a middle part above 12.
+   - `03_handle_missing_values.sql` applies the missing-value rules below
 3. **Validate (Excel and Python):** a random sample of 200 raw orders was compared with their cleaned versions using Excel formulas. See `data/validation_sample.xlsx` and `notebooks/02_validation.ipynb`.
 4. **Automate (Python):** `clean_orders.py` does the whole job in one run and saves `data/orders_clean_python.csv`. Run it from the project folder with `python clean_orders.py`.
 5. **Report (Power BI):** `tissue_orders_report.pbix`.

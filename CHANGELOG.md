@@ -34,11 +34,8 @@
 
 ## Day 4: Automation in Python
 
-- Wrote clean_orders.py, one script that does the full cleaning: remove duplicates, standardise dates, apply the missing-value rules, save the result
-
-- Script output: 8,400 raw rows down to 7,780 clean rows, 0 dates unconverted, 74 quantities flagged for review
-
-- Compared the Python output with the SQL output (orders_clean.csv vs orders_clean_python.csv): identical, 7,780 rows and 10 columns, cell for cell
-
-- Run time: 0.27 seconds. Manual cleaning is estimated at about 52 minutes (an estimate, not a measured time)
+* Wrote clean_orders.py, one script that does the full cleaning: remove duplicates, standardise dates, apply the missing-value rules, save the result
+* Script output: 8,400 raw rows down to 7,780 clean rows, 0 dates unconverted, 74 quantities flagged for review
+* Compared the Python output with the SQL output (orders_clean.csv vs orders_clean_python.csv): identical, 7,780 rows and 10 columns, cell for cell
+* Run time: 0.27 seconds. Manual cleaning is estimated at about 52 minutes (an estimate, not a measured time)
 
